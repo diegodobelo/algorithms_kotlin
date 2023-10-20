@@ -1,7 +1,7 @@
 package primitive_types
 
 /**
- * Algorithms for primitive types
+ * Algorithms for primitive types.
  */
 class PrimitiveTypes {
 
@@ -25,7 +25,7 @@ class PrimitiveTypes {
     /**
      * Checks the parity of a long.
      * It toggles the value of result (1 to 0 or 0 to 1) by performing a xor with the first bit of the input.
-     * @param x the long value to check parity
+     * @param x the long value to check parity.
      * @return 1L if odd, 0L if even.
      */
     fun bruteForceParity(x: Long): Long {
@@ -34,6 +34,22 @@ class PrimitiveTypes {
         while (tempX != 0L) {
             result = result xor (tempX and 1L)
             tempX = tempX ushr 1
+        }
+        return result
+    }
+
+    /**
+     * Checks the parity of a long by clearing the last bit set to 1.
+     * It clears the last bit set to 1 od the given long by doing the trick (x & (x - 1)).
+     * @param x the long value to check parity.
+     * @return 1L if odd, 0L if even.
+     */
+    fun fasterParity(x: Long): Long {
+        var result = 0L
+        var tempX = x
+        while (tempX != 0L) {
+            result = result xor 1
+            tempX = tempX and (tempX - 1)
         }
         return result
     }
