@@ -29,6 +29,28 @@ class PrimitiveTypesTest {
         }
     }
 
+    @Nested
+    inner class `Check parity of a long` {
+
+        private val subject = PrimitiveTypes()
+
+        @Test
+        fun `positive numbers`() {
+            assertEquals(0, subject.bruteForceParity(0))
+            assertEquals(0, subject.bruteForceParity(3))
+            assertEquals(0, subject.bruteForceParity(5))
+            assertEquals(1, subject.bruteForceParity(19))
+            assertEquals(1, subject.bruteForceParity(127))
+        }
+
+        @Test
+        fun `negative numbers`() {
+            assertEquals(0, subject.bruteForceParity(-1))
+            assertEquals(1, subject.bruteForceParity(-3))
+            assertEquals(0, subject.bruteForceParity(-19))
+        }
+    }
+
 
 
 }
