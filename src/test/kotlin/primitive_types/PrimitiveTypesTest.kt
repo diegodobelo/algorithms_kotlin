@@ -73,6 +73,28 @@ class PrimitiveTypesTest {
         }
     }
 
+    @Nested
+    inner class `Check parity of a long by doing xor of first half with second half of a Long` {
+
+        private val subject = PrimitiveTypes()
+
+        @Test
+        fun `positive numbers`() {
+            assertEquals(0, subject.halfXorParity(0))
+            assertEquals(0, subject.halfXorParity(3))
+            assertEquals(0, subject.halfXorParity(5))
+            assertEquals(1, subject.halfXorParity(19))
+            assertEquals(1, subject.halfXorParity(127))
+        }
+
+        @Test
+        fun `negative numbers`() {
+            assertEquals(0, subject.halfXorParity(-1))
+            assertEquals(1, subject.halfXorParity(-3))
+            assertEquals(0, subject.halfXorParity(-19))
+        }
+    }
+
 
 
 }

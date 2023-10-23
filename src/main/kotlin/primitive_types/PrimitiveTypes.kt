@@ -53,4 +53,23 @@ class PrimitiveTypes {
         }
         return result
     }
+
+    /**
+     * Checks parity of a long by performing a xor of half of a Long with the other half of the same Long.
+     * Then do the same with half of the half and so on. Finally, get the last bit by performing an 'and' to get the
+     * last bit. If you do a xor on every bit of a long you will be calculating the parity. As xor is commutative and
+     * associative you can perform xor with groups of bits.
+     * @param x the long value to check parity.
+     * @return 1L if odd, 0L if even.
+     */
+    fun halfXorParity(x: Long): Long {
+        var tempX = x
+        tempX = tempX xor (tempX ushr 32)
+        tempX = tempX xor (tempX ushr 16)
+        tempX = tempX xor (tempX ushr 8)
+        tempX = tempX xor (tempX ushr 4)
+        tempX = tempX xor (tempX ushr 2)
+        tempX = tempX xor (tempX ushr 1)
+        return tempX and 1
+    }
 }
