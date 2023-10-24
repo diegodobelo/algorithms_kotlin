@@ -72,4 +72,32 @@ class PrimitiveTypes {
         tempX = tempX xor (tempX ushr 1)
         return tempX and 1
     }
+
+    /**
+     * Swaps bits on a Long. It checks if the bits on position i and j are not the same. As the bits only can have
+     * value 1 or 0, we just need to invert them on each position when they are different. To do that we just need to
+     * apply a xor with 1, because 1 xor 1 = 0 and 0 xor 1 = 1.
+     * @param x the Long to have bits swapped.
+     * @param i the position of the first bit.
+     * @param j the position of the second bit.
+     * @return The swapped Long.
+     */
+    fun swapBits(x: Long, i: Int, j: Int): Long {
+        var result = x
+        if ((x ushr i) and 1 != (x ushr j) and 1) {
+            val bitmask = (1L shl i) or (1L shl j)
+            result = result xor bitmask
+        }
+        return result
+    }
+}
+
+fun Long.bits() : String {
+    val stringBuilder = StringBuilder()
+    var temp = this
+    repeat((0..<31).count()) {
+        stringBuilder.append(temp and 1)
+        temp = temp ushr 1
+    }
+    return stringBuilder.reverse().toString()
 }

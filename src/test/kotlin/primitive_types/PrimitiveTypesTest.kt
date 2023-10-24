@@ -96,5 +96,34 @@ class PrimitiveTypesTest {
     }
 
 
+    @Nested
+    inner class `Swap bits of a Long` {
+
+        private val subject = PrimitiveTypes()
+
+        @Test
+        fun `positive numbers`() {
+            assertEquals("0000000000000000000000000010001", 17L.bits())
+            assertEquals("0000000000000000000000010000001", subject.swapBits(17L, 4, 7).bits())
+
+            assertEquals("0000000000000000000010100001101", 1293L.bits())
+            assertEquals("0000000000000000100010100000101", subject.swapBits(1293L, 14, 3).bits())
+
+            // DO NOT SWAP
+            assertEquals("0000000000000000000000000000011", 3L.bits())
+            assertEquals("0000000000000000000000000000011", subject.swapBits(3L, 0, 1).bits())
+        }
+
+        @Test
+        fun `negative numbers`() {
+            assertEquals("1111111111111111111111111101111", (-17L).bits())
+            assertEquals("1111111111111111111111101111111", subject.swapBits(-17L, 4, 7).bits())
+
+            assertEquals("1111111111111111111101011110011", (-1293L).bits())
+            assertEquals("1111111111111111011101011111011", subject.swapBits(-1293L, 14, 3).bits())
+        }
+    }
+
+
 
 }
