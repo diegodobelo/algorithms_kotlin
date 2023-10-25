@@ -124,6 +124,27 @@ class PrimitiveTypesTest {
         }
     }
 
+    @Nested
+    inner class `Reverse digits of an Integer` {
+
+        private val subject = PrimitiveTypes()
+
+        @Test
+        fun `positive numbers`() {
+            assertEquals(245, subject.reverseDigitsOfInt(542))
+            assertEquals(1367, subject.reverseDigitsOfInt(7631))
+            assertEquals(1111, subject.reverseDigitsOfInt(1111))
+            assertEquals(0, subject.reverseDigitsOfInt(0))
+        }
+
+        @Test
+        fun `negative numbers`() {
+            assertEquals(-245, subject.reverseDigitsOfInt(-542))
+            assertEquals(-1367, subject.reverseDigitsOfInt(-7631))
+            assertEquals(-1111, subject.reverseDigitsOfInt(-1111))
+        }
+    }
+
 
 
 }

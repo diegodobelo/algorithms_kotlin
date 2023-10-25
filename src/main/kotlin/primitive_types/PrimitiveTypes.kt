@@ -1,5 +1,8 @@
 package primitive_types
 
+import kotlin.math.abs
+import kotlin.math.sign
+
 /**
  * Algorithms for primitive types.
  */
@@ -42,10 +45,10 @@ class PrimitiveTypes {
      * Checks the parity of a long by clearing the last bit set to 1.
      * It clears the last bit set to 1 od the given long by doing the trick (x & (x - 1)).
      * @param x the long value to check parity.
-     * @return 1L if odd, 0L if even.
+     * @return 1 if odd, 0 if even.
      */
-    fun fasterParity(x: Long): Long {
-        var result = 0L
+    fun fasterParity(x: Long): Int {
+        var result = 0
         var tempX = x
         while (tempX != 0L) {
             result = result xor 1
@@ -89,6 +92,22 @@ class PrimitiveTypes {
             result = result xor bitmask
         }
         return result
+    }
+
+    /**
+     * Reverses the digits of an Int. e.g. 245 becomes 542, -8539 becomes 9358.
+     * The idea is to extract the first (rightmost digit) by applying a mod 10. Then we drop that first digit by
+     * dividing by 10. Next we multiply the temporary result by 10 and sum it with last digit again.
+     * @param x the Integer to have digits reversed.
+     */
+    fun reverseDigitsOfInt(x: Int): Int {
+        var result = 0
+        var xRemaining = abs(x)
+        while (xRemaining != 0) {
+            result = result * 10 + xRemaining % 10
+            xRemaining /= 10
+        }
+        return result * x.sign
     }
 }
 
