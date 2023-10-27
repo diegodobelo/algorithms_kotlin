@@ -145,6 +145,30 @@ class PrimitiveTypesTest {
         }
     }
 
+    @Nested
+    inner class `Check if integer is palindrome` {
+
+        private val subject = PrimitiveTypes()
+
+        @Test
+        fun `positive numbers`() {
+            assertEquals(false, subject.isPalindrome(542))
+            assertEquals(true, subject.isPalindrome(1234554321))
+            assertEquals(true, subject.isPalindrome(56788765))
+            assertEquals(true, subject.isPalindrome(11))
+            assertEquals(false, subject.isPalindrome(772177))
+        }
+
+        @Test
+        fun `negative numbers`() {
+            assertEquals(false, subject.isPalindrome(-542))
+            assertEquals(false, subject.isPalindrome(-1234554321))
+            assertEquals(false, subject.isPalindrome(-56788765))
+            assertEquals(false, subject.isPalindrome(-11))
+            assertEquals(false, subject.isPalindrome(-772177))
+        }
+    }
+
 
 
 }

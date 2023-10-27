@@ -1,6 +1,8 @@
 package primitive_types
 
 import kotlin.math.abs
+import kotlin.math.log10
+import kotlin.math.pow
 import kotlin.math.sign
 
 /**
@@ -108,6 +110,32 @@ class PrimitiveTypes {
             xRemaining /= 10
         }
         return result * x.sign
+    }
+
+    /**
+     * Checks if an integer is a palindrome. The idea is to extract most significant bit, extract least significant bit,
+     * and check if they are equal. Then drop both digits and repeat the process. If they are always equal throughout the
+     * process, the integer is a palindrome. Negative numbers are never a palindrome because of the negative sign.
+     * @param x The Integer to check if is a palindrome.
+     */
+    fun isPalindrome(x: Int): Boolean {
+        if (x < 0) return false
+        var tempX = x
+        // We can determine de number of digits by applying log10, which basically tells the number of times
+        // we can divide an int by 10 until it gets to a number < 10. If it is 2987 for example, we get 298 -> 29 -> 2
+        val numDigits = (log10(x.toDouble()) + 1).toInt()
+        var mostSignificantDigitMask = (10.0.pow(numDigits - 1)).toInt()
+        repeat( numDigits/2) {
+            val mostSignificantDigit = tempX / mostSignificantDigitMask
+            val leastSignificantDigit = tempX % 10
+            if (mostSignificantDigit != leastSignificantDigit) {
+                return false
+            }
+            tempX %= mostSignificantDigitMask // Drop the first digit (most significant)
+            tempX /= 10 // Drop the last digit (least significant)
+            mostSignificantDigitMask /= 100 // we divide by 100 because we dropped 2 digits
+        }
+        return true
     }
 }
 
