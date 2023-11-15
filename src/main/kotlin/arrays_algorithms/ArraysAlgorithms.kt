@@ -1,4 +1,4 @@
-package arrays
+package arrays_algorithms
 
 /**
  * Algorithms using arrays
