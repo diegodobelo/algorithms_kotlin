@@ -34,4 +34,20 @@ class ArraysAlgorithmsTest {
         }
     }
 
+    @Nested
+    inner class `increment arbitrary-precision int array` {
+
+        @Test
+        fun `positive numbers`() {
+            assertEquals(arrayOf(1, 2).toList(), subject.arbitraryPrecisionIntPlusOne(arrayOf(1, 1)).toList())
+            assertEquals(arrayOf(1, 2, 3, 4, 5, 6, 7).toList(), subject.arbitraryPrecisionIntPlusOne(arrayOf(1, 2, 3, 4, 5, 6, 6)).toList())
+        }
+
+        @Test
+        fun `positive numbers with carry`() {
+            assertEquals(arrayOf(1, 2, 0).toList(), subject.arbitraryPrecisionIntPlusOne(arrayOf(1, 1, 9)).toList())
+            assertEquals(arrayOf(1, 0, 0, 0).toList(), subject.arbitraryPrecisionIntPlusOne(arrayOf(9, 9, 9)).toList())
+        }
+    }
+
 }

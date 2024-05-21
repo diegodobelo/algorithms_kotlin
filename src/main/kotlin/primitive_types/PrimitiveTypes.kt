@@ -1,5 +1,6 @@
 package primitive_types
 
+import arrays_algorithms.ArraysAlgorithms
 import kotlin.math.abs
 import kotlin.math.log10
 import kotlin.math.pow
@@ -135,8 +136,14 @@ class PrimitiveTypes {
             tempX /= 10 // Drop the last digit (least significant)
             mostSignificantDigitMask /= 100 // we divide by 100 because we dropped 2 digits
         }
+
         return true
     }
+}
+
+fun blastoise(block: ArraysAlgorithms.() -> Unit) {
+    val arraysAlgorithms = ArraysAlgorithms()
+    block(arraysAlgorithms)
 }
 
 fun Long.bits() : String {
